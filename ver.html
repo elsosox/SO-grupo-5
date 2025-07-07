@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Alumno</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            background: linear-gradient(120deg, #592C82 0%, #C9486F 60%, #F9B233 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: "Poppins", sans-serif;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 50px 14px 50px;
+            background: rgba(0,0,0,0.18);
+            box-sizing: border-box;
+        }
+        .brand {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-logout {
+            background: #fff;
+            color: #333;
+            padding: 8px 22px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .btn-logout:hover {
+            background: #e3e3e3;
+        }
+        .panel {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            color: #fff;
+            padding: 40px 50px;
+            margin-top: 40px;
+            width: 90vw;
+            max-width: 900px;
+        }
+        .panel h2 {
+            font-size: 1.7em;
+            margin-bottom: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        select {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            font-size: 1em;
+        }
+        th {
+            background: rgba(249,178,51,0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+        td {
+            color: #f3f3f3;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 900px) {
+            .panel {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .navbar {
+                padding: 16px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">Escuela de Manejo Dean Valdivia</div>
+        <a href="{{ url_for('alumnos') }}" class="btn-logout">Volver a la gestión</a>
+    </div>
+
+    <div class="panel">
+        <h2>Ver Datos del Alumno</h2>
+
+        <form method="get">
+            <label for="alumno_id">Selecciona un alumno:</label>
+            <select name="alumno_id" id="alumno_id" onchange="this.form.submit()" required>
+                <option value="">-- Seleccionar alumno --</option>
+                {% for a in lista_alumnos %}
+                    <option value="{{ a.id }}" {% if alumno and alumno.id == a.id %}selected{% endif %}>{{ a.nombre_completo }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <table>
+            <tr><th>Nombre completo</th><td>{{ alumno.nombre_completo }}</td></tr>
+            <tr><th>Horario</th><td>{{ alumno.horario }}</td></tr>
+            <tr><th>Horas</th><td>{{ alumno.horas }}</td></tr>
+            <tr><th>Total a pagar</th><td>S/ {{ "%.2f"|format(alumno.total_pagar) }}</td></tr>
+            <tr><th>ID de pago</th><td>{{ alumno.pago_id }}</td></tr>
+            <tr><th>Monto abonado</th><td>S/ {{ "%.2f"|format(alumno.monto_abonado) }}</td></tr>
+            <tr><th>Fecha de pago</th><td>{{ alumno.fecha_pago.strftime('%d/%m/%Y') if alumno.fecha_pago else '-' }}</td></tr>
+            <tr><th>Abonado acumulado</th><td>S/ {{ "%.2f"|format(alumno.abonado_acumulado) }}</td></tr>
+            <tr><th>Falta pagar</th><td>S/ {{ "%.2f"|format(alumno.falta_actual) }}</td></tr>
+        </table>
+    </div>
+</body>
+</html>

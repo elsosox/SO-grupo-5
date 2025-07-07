@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel principal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            background: linear-gradient(120deg, #592C82 0%, #C9486F 60%, #F9B233 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Poppins", sans-serif;
+        }
+        /* Header fijo arriba, logo a la izquierda, cerrar sesión a la derecha */
+        .header-fixed {
+            position: fixed;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            width: calc(100vw - 120px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .logo-text {
+            font-size: 2.3em;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #fff;
+            line-height: 1.1;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            white-space: nowrap;
+            pointer-events: auto;
+        }
+        .btn-logout {
+            background: #fff;
+            color: #333;
+            padding: 18px 26px;
+            border-radius: 22px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            font-size: 1.25em;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
+            text-align: center;
+            pointer-events: auto;
+        }
+        .btn-logout:hover {
+            background: #f5f5f5;
+            color: #000;
+        }
+        .wrapper {
+            position: relative;
+            width: 540px;
+            min-height: 330px;
+            background: rgba(36, 11, 54, 0.55);
+            border: 3px solid rgba(255,255,255,0.18);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+            color: #fff;
+            padding: 38px 38px 32px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            z-index: 1;
+            margin-top: 80px;
+        }
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            width: 100%;
+            min-height: 70px;
+        }
+        .navbar-user {
+            font-size: 1.65em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 0.1em;
+        }
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .panel h2 {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+        .list-group-item {
+            background: rgba(255,255,255,0.09);
+            border: 2px solid rgba(255,255,255,0.20);
+            border-radius: 20px;
+            color: #fff;
+            padding: 30px 42px;
+            font-size: 1.15em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            transition: background 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+            min-width: 200px;
+            min-height: 65px;
+            justify-content: center;
+            text-align: center;
+        }
+        .list-group-item:hover {
+            background: rgba(255,255,255,0.18);
+            color: #222;
+            border: 2px solid #fff;
+        }
+        @media (max-width: 650px) {
+            .header-fixed {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                width: calc(100vw - 20px);
+            }
+            .logo-text {font-size: 1.1em;}
+            .btn-logout {font-size: 1em; padding: 10px 16px;}
+            .wrapper {width: 97vw; min-width: 0; padding: 5vw;}
+            .navbar-user {font-size: 1em;}
+        }
+    </style>
+</head>
+<body>
+    <div class="header-fixed">
+        <span class="logo-text">Escuela de Manejo Dean Valdivia</span>
+        <a href="/logout" class="btn-logout">Cerrar sesión</a>
+    </div>
+    <div class="wrapper">
+        <div class="navbar">
+            <div class="navbar-user">Bienvenido: Administrador</div>
+        </div>
+        <div class="panel">
+            <div class="list-group">
+                <a class="list-group-item" href="{{ url_for('gestionar_alumnos') }}">
+                    Gestionar Alumnos
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

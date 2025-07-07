@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inicio de Sesión y Registro</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #592C82 0%, #C9486F 60%, #F9B233 100%);
+      background-size: cover;
+    }
+
+    .wrapper {
+      width: 420px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, .2);
+      backdrop-filter: blur(20px);
+      color: #fff;
+      border-radius: 10px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tab-container {
+      display: flex;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .tab.active {
+      color: #fff;
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -11px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+    }
+
+    .form-container {
+      position: relative;
+      flex-grow: 1;
+      min-height: 400px;
+    }
+
+    .form {
+      transition: all 0.3s;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scroll-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding-right: 10px;
+      margin-bottom: 15px;
+    }
+
+    .input-box {
+      position: relative;
+      width: 100%;
+      height: 52px;
+      margin-top: 20px;
+    }
+
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, .2);
+      border-radius: 40px;
+      font-size: 16px;
+      color: #fff;
+      padding: 0 45px 0 20px;
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 17px;
+      color: #333;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    .register-link {
+      font-size: 15px;
+      text-align: center;
+      margin: 24px 0 12px;
+    }
+
+    #login-form {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #register-form {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transform: translateX(100%);
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper.register-mode #login-form {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .wrapper.register-mode #register-form {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #alert-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+
+    .alert {
+      background: #fff;
+      color: #333;
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      font-weight: 500;
+      animation: fadeOut 4s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="alert-container"></div>
+  <div class="wrapper" id="wrapper">
+    <div class="tab-container">
+      <div class="tab active" id="login-tab">Iniciar Sesión</div>
+      <div class="tab" id="register-tab">Registrarse</div>
+    </div>
+
+    <div class="form-container">
+      <!-- LOGIN -->
+      <form class="form" id="login-form">
+        <div class="input-box">
+          <input type="text" id="login-username" placeholder="Usuario" required>
+          <i class="bx bxs-user"></i>
+        </div>
+
+        <div class="input-box">
+          <input type="password" id="login-password" placeholder="Contraseña" required>
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+
+        <button type="submit" class="btn">Ingresar</button>
+
+        <div class="register-link">
+          <p>¿No tienes cuenta? <a href="#" id="show-register">Regístrate</a></p>
+        </div>
+      </form>
+
+      <!-- REGISTRO -->
+      <form class="form" id="register-form">
+        <div class="scroll-container">
+          <div class="input-box">
+            <input type="text" id="reg-name" placeholder="Nombre completo" required>
+            <i class="bx bxs-user"></i>
+          </div>
+
+          <div class="input-box">
+            <input type="email" id="reg-email" placeholder="Correo electrónico" required>
+            <i class="bx bxs-envelope"></i>
+          </div>
+
+          <div class="input-box">
+            <input type="text" id="reg-username" placeholder="Usuario" required>
+            <i class="bx bxs-user-circle"></i>
+          </div>
+
+          <div class="input-box">
+            <input type="password" id="reg-password" placeholder="Contraseña" required>
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+
+          <div class="input-box">
+            <input type="password" id="reg-confirm-password" placeholder="Confirmar contraseña" required>
+            <i class="bx bxs-lock"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="btn">Registrarse</button>
+
+        <div class="register-link">
+          <p>¿Ya tienes cuenta? <a href="#" id="show-login">Iniciar sesión</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const wrapper = document.getElementById("wrapper");
+    const loginTab = document.getElementById("login-tab");
+    const registerTab = document.getElementById("register-tab");
+
+    loginTab.onclick = () => wrapper.classList.remove("register-mode");
+    registerTab.onclick = () => wrapper.classList.add("register-mode");
+
+    document.getElementById("show-register").onclick = () => wrapper.classList.add("register-mode");
+    document.getElementById("show-login").onclick = () => wrapper.classList.remove("register-mode");
+
+    const showAlert = (message) => {
+      const alertBox = document.createElement("div");
+      alertBox.classList.add("alert");
+      alertBox.innerText = message;
+      document.getElementById("alert-container").appendChild(alertBox);
+      setTimeout(() => alertBox.remove(), 4000);
+    };
+
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("reg-username").value.trim();
+      const password = document.getElementById("reg-password").value;
+      const confirm = document.getElementById("reg-confirm-password").value;
+
+      const usuariosExistentes = ["admin", "jhassef"];
+      if (usuariosExistentes.includes(username.toLowerCase())) {
+        showAlert("⚠️ El usuario ya está registrado.");
+        return;
+      }
+
+      if (password !== confirm) {
+        showAlert("⚠️ Las contraseñas no coinciden.");
+        return;
+      }
+
+      showAlert("✅ Registro exitoso");
+      this.reset();
+      wrapper.classList.remove("register-mode");
+    });
+
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("login-username").value.trim();
+
+      if (username !== "") {
+        localStorage.setItem("usuarioActual", username);
+        window.location.href = "dashboard.html";
+      } else {
+        showAlert("⚠️ Debes ingresar un usuario.");
+      }
+    });
+  </script>
+</body>
+</html>

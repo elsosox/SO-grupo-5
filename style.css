@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("fondo.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 420px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 40px 40px 35px 40px; /* Aumenta padding superior e inferior */
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+.tab-container {
+    display: flex;
+    margin-bottom: 25px; /* Más espacio debajo de tabs */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;  /* Más padding vertical */
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    position: relative;
+}
+
+.tab.active {
+    color: #fff;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+}
+
+.form-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.form {
+    transition: all 0.3s;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start; /* Cambiado de space-between para mejor control del espaciado */
+    padding-top: 20px; /* Más espacio arriba */
+    padding-bottom: 15px; /* Más espacio abajo */
+    gap: 22px; /* Espacio uniforme entre todos los elementos del form */
+}
+
+.login-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px; /* Espacio entre elementos internos */
+}
+
+.scroll-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.5) transparent;
+}
+
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 52px; /* Más alto */
+    margin: 20px 0 0 0; /* Solo margen superior para separar cada input */
+}
+
+.input-box:first-child {
+    margin-top: 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 45px 0 20px;
+}
+
+.input-box input::placeholder {
+    color: #e0e0e0;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin: 0 0 18px 0; /* Más espacio debajo */
+    padding: 0 2px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 6px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 48px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 17px;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-top: 14px;
+}
+
+.btn:hover {
+    background: #f0f0f0;
+}
+
+.register-link {
+    font-size: 15px;
+    text-align: center;
+    margin: 24px 0 12px;
+}
+
+.register-link a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+#login-form {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#register-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper.register-mode #login-form {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.wrapper.register-mode #register-form {
+    opacity: 1;
+    transform: translateX(0);
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Alumno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            background: linear-gradient(120deg, #592C82 0%, #C9486F 60%, #F9B233 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: "Poppins", sans-serif;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 50px 14px 50px;
+            background: rgba(0,0,0,0.18);
+            box-sizing: border-box;
+        }
+        .brand {
+            font-size: 2em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-logout {
+            background: #fff;
+            color: #333;
+            padding: 8px 22px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .btn-logout:hover {
+            background: #e3e3e3;
+        }
+        .panel {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            color: #fff;
+            padding: 40px 50px 35px 50px;
+            margin-top: 40px;
+            width: 90vw;
+            max-width: 800px;
+            overflow-x: auto;
+        }
+        .panel h2 {
+            font-size: 1.7em;
+            margin-bottom: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        label, select, input {
+            font-size: 1.15em;
+            color: #fff;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 12px;
+        }
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1.5px solid #ccc;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            font-family: "Poppins", sans-serif;
+            font-size: 1em;
+            background: #fff;
+            color: #222;
+        }
+        button[type="submit"] {
+            background: #fff;
+            color: #333;
+            padding: 10px 28px;
+            border-radius: 18px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-top: 12px;
+        }
+        button[type="submit"]:hover {
+            background: #f9b233;
+            color: #592C82;
+        }
+        @media (max-width: 900px) {
+            .panel {
+                padding: 20px 5vw 20px 5vw;
+                margin-top: 18px;
+            }
+            .navbar {
+                padding: 16px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">Escuela de Manejo Dean Valdivia</div>
+        <a href="{{ url_for('alumnos') }}" class="btn-logout">Volver a la gestión</a>
+    </div>
+    <div class="panel">
+        <h2>Editar Alumno</h2>
+        <form method="post">
+            <label for="campo">Campo a modificar:</label>
+            <select name="campo" id="campo" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="nombre_completo">Nombre completo</option>
+                <option value="horario">Horario</option>
+                <option value="horas">Horas</option>
+            </select>
+
+            <label for="nuevo_valor">Nuevo valor:</label>
+            <input type="text" name="nuevo_valor" id="nuevo_valor" required>
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+    </div>
+</body>
+</html>

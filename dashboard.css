@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    /* LA RUTA ES RELATIVA DENTRO DE /static */
+    background: url("fondo.png") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(20px);
+    z-index: 0;
+}
+
+.wrapper {
+    position: relative;
+    width: 900px;
+    min-height: 500px;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: #fff;
+    padding: 40px 50px 35px 50px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.brand {
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.navbar-user {
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-logout {
+    background: #fff;
+    color: #333;
+    padding: 8px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 16px;
+    border: none;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.btn-logout:hover {
+    background: #e3e3e3;
+}
+
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel h2 {
+    font-size: 1.7em;
+    margin-bottom: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.list-group {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.list-group-item {
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    color: #fff;
+    padding: 35px 50px;
+    font-size: 1.3em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: background 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    min-width: 260px;
+    min-height: 90px;
+    justify-content: center;
+}
+
+.list-group-item:hover {
+    background: rgba(255,255,255,0.18);
+    color: #222;
+    border: 1.5px solid #fff;
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 97vw;
+        padding: 15px 2vw 20px 2vw;
+    }
+    .list-group {
+        flex-direction: column;
+        gap: 28px;
+    }
+}
